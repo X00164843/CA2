@@ -1,0 +1,27 @@
+{% extends "base.html" %} {% load static %} {% block metadescription %} {% if category %} {{ category.description|truncatewords:155 }} {% else %}  {% endif %} {% endblock %} {% block title %} {% if category %} {{ category.name }} - Perfect Cushion Store {% else %} See Our Cushion Collection - Perfect Cushion Store {% endif %} {% endblock %} {% block content %} {% if category %}
+Our Product Collection | {{category.name}}
+
+{% endif %}
+{% if category %} {{category.name}}
+
+{{category.name}}
+{{category.description}}
+
+{% else %} Our Products Collection
+Our Products Collection
+
+
+{% endif %}
+{% for product in products %}
+<div>
+    <div>
+        <a href="{{product.get_absolute_url}}"></a>
+        <div>
+            <h4>{{product.name}}</h4>
+            <p>€{{product.price}}</p>
+        </div>
+    </div>
+</div>
+{% endfor %}
+
+{% endblock %}
