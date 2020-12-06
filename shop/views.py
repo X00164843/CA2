@@ -1,5 +1,6 @@
 from django.shortcuts import render, get_object_or_404
 from .models import Category, Product
+from django.core.paginator import Paginator, EmptyPage, InvalidPage
 
 def allProdCat(request, category_id=None):
     page = None
@@ -9,7 +10,16 @@ def allProdCat(request, category_id=None):
         products = Product.objects.filter(category=page, available=True)
     else:
         products = Product.objects.all().filter(available=True)
-
+    
+    paginator = Paginator(products, 6)
+    try:
+        pages = int(request.GET.get('page', '1'))
+    except:
+        pages = 1
+    try:
+        product_list = paginator.page(page)
+    except (EmptyPage, InvalidPage):
+        product_list = paginator.page(paginator.num_pages)
     return render(request,'shop/category.html',{'category':page, 'products':products})
 
 def prod_detail(request, category_id, product_id):

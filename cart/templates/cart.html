@@ -1,0 +1,34 @@
+% extends "base.html" %} {% load static %} {% block metadescription %} This is the shopping cart page. Proceed to review your items and place the order. {% endblock %} {% block title %} Cart - Perfect Cushion Store {% endblock %} {% block content %} {% if not cart_items %}
+
+Your shopping cart is empty
+
+Please click here to continue shopping.
+
+{% else %}
+
+Your shopping cart
+
+{% for cart_item in cart_items %} 
+{% if cart_item.quantity < cart_item.product.stock %}
+<td>
+    <a href="{% url 'cart:add_cart' cart_item.product.id %}" class="custom_a"><i></i>Add to Cart</a>
+    <a href="{% url 'cart:cart_remove' cart_item.product.id %}" class="custom_a"><i></i>Remove from Cart</a>
+    <a href="{% url 'cart:full_remove' cart_item.product.id %}" class="custom_icon"><i class="fas fa-trash-alt custom_icon"></i></a>
+</td>
+{% else %}
+<td>
+    &nbsp;<a href="{% url 'cart:cart_remove' cart_item.product.id %}" class="custom_a">Remove</a>
+    <a href="{% url 'cart:full_remove' cart_item.product.id %}" class="custom_icon"><i class="fas fa-trash-alt custom_icon"></i></a>
+</td>
+
+{% endif %} {% endfor %}
+Your items
+	{{cart_item.product.name}}
+Unit Price: £{{cart_item.product.price}}
+Qty: {{cart_item.quantity}} x £{{cart_item.product.price}}	£{{cart_item.sub_total}}	   	  	
+Checkout
+Please review your shopping cart items before proceeding with the order payment.
+Your total is: £{{ total }}
+Continue Shopping
+
+{% endif %} {% endblock %}
