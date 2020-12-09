@@ -17,9 +17,9 @@ def allProdCat(request, category_id=None):
     except:
         pages = 1
     try:
-        product_list = paginator.page(page)
+        prod = paginator.page(page)
     except (EmptyPage, InvalidPage):
-        product_list = paginator.page(paginator.num_pages)
+        prod = paginator.page(paginator.num_pages)
     return render(request,'shop/category.html',{'category':page, 'products':products})
 
 def prod_detail(request, category_id, product_id):

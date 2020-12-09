@@ -1,4 +1,4 @@
-{% extends "base.html" %} {% load static %} {% block metadescription %} {% if category %} {{ category.description|truncatewords:155 }} {% else %} Welcome to the cushion store where you can buy comfy and awesome cushions. {% endif %} {% endblock %} {% block title %} {% if category %} {{ category.name }} - Perfect Cushion Store {% else %} See Our Cushion Collection - Perfect Cushion Store {% endif %} {% endblock %} {% block content %} {% if category %}
+{% extends "base.html" %} {% load static %} {% block metadescription %} {% if category %} {{ category.description|truncatewords:155 }} {% else %} Welcome to our GAA store {% endif %} {% endblock %} {% block title %} {% if category %} {{ category.name }} - GAA Store {% else %} See Our Collection {% endif %} {% endblock %} {% block content %} {% if category %}
 Our Product Collection | 
 
 {% endif %}
@@ -7,15 +7,65 @@ Our Product Collection |
 {{category.description}}
 
 {% else %} Our Products Collection
-Our Products Collection
-Finding the perfect cushion for your room can instantly add to the levels of comfort and sense of style throughout your home. They can transform the blandest of decors instantly by adding colour, softness and an air of cosiness. As well as being comfy and looking great our range of cushions will certainly embolden your décor with personalised charm.
+<div class="container">
+    <div class="row mx-auto">
+        {% for product in products %}
+          <div class="my_margin col-9 col-lg-4 col-sm-12 col-4">
+              <div class="card text-center" style="min-width: 18rem;">
+                  <a href="{{product.get_absolute_url}}"><img class="card-img-top images" src="#" alt="{{category.name}}"></a>
+                  <div class="card-body">
+                    <h4>{{product.name}}</h4>
+                    <p>€{{product.price}}</p>
+                    <a href="{{product.get_absolute_url}}">Description</a>
+                  </div>
+              </div>
+          </div>
+        {% endfor %}
+        {% if prod.paginator.num_pages > 1 %}
+        <hr>
+        <div class="text-center">
+            {% for pg in prod.paginator.page_range %}
+            <a href="?page={{pg}}" class="btn btn-secondary
+                {% if prod.number == pg %}active{% endif %}">{{pg}}
+            </a>
+            {% endfor %}
+        </div>
+        {% endif %}
+    </div>
+</div>
+{% endif %}
+{% if category %}
+   <div class="row page_row">
+       <div class="mx-auto">
+           <p><a href="{% url 'shop:allProdCat' %}">Our Product</a></p>
+       </div>
+   </div>
+{% endif %} 
+<div class="mx-auto">
+    {% if category %}
+       <img class="images" src="#" alt="{{category.name}}">
+</div>
+<br>
+<div>
+    <h1 class="text-center name">{{category.name}}</h1>
+    <p class="text-justify">{{category.description}}</p>
+</div>
+<div class="container">
+    <div class="row mx-auto">
+        {% for product in products %}
+          <div class="my_margin col-9 col-lg-4 col-sm-12 col-4">
+              <div class="card text-center" style="min-width: 18rem;">
+                  <a href="{{product.get_absolute_url}}"><img class="card-img-top images" src="#" alt="{{category.name}}"></a>
+                  <div class="card-body">
+                    <h4>{{product.name}}</h4>
+                    <p>€{{product.price}}</p>
+                    <a href="{{product.get_absolute_url}}">Description</a>
+                  </div>
+              </div>
+          </div>
+        {% endfor %}
+    </div>
+</div>
 
 {% endif %}
-{% for product in products %}
-{{product.name}}
-<br>
-€{{product.price}}
-
-{% endfor %}
-
 {% endblock %}
