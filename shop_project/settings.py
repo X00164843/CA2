@@ -41,6 +41,10 @@ INSTALLED_APPS = [
     'shop',
     'search_app',
     'cart',
+    'stripe',
+    'vouchers',
+    'order',
+    'crispy_forms',
 ]
 
 MIDDLEWARE = [
@@ -136,3 +140,6 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = str(BASE_DIR.joinpath('media'))
 
 AUTH_USER_MODEL = 'accounts.CustomUser'
+
+STRIPE_SECRET_KEY = 'sk_test_51HwuAzFLGgv1eB6pe0cO8mfHNiSESTknU6is8ztaMOdQenEKDPTq6dMYUhXFZoXI69ReaB0yk9JacZKaNWYcFBMX00MlVB7fxj'
+STRIPE_PUBLISHABLE_KEY = 'pk_test_51HwuAzFLGgv1eB6pQok7lxUWFw540VxCtf8FHIbZfCzHYOHLJSVlWya8yvV5CnhV8WfvSS0F9VuhvDYdtkNn9fWW00h1Zp5ye2'

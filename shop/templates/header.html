@@ -1,6 +1,20 @@
 {% load static %}
 <header>
-    <div style="text-align: center;">
-        <a href="{% url 'shop:allProdCat' %}"><img src="{% static 'images/logo.png' %}" alt="GAA Online Store"></a>
+    <div class="row">
+        <div class="col-2">
+            <a href="{% url 'shop:allProdCat' %}"><img style="width:350px; margin-left: 20px; margin-top: 8px;" src="{% static 'images/ballybodenlogo.png' %}" alt="Ballyboden Logo"></a>
+        </div>
+        <div class="col d-flex justify-content-center">
+            <form class="form-inline" action="{% url 'search_app:searchResult' %}" method="get">
+                {% csrf_token %}
+              <button class="btn" style="background-color: rgb(6, 49, 99); height: 38px;" type="submit"><i style="color: white; font-size: 24px;" class="material-icons">search</i></button>
+              <input class="form-control" type="search" placeholder="Enter search in here" aria-label="Search" name="q">
+            </form>
+        </div>
+        <div class="col-2 d-flex justify-content-center mt-4">
+            <ul>
+                <a class="nav-link" style="color: rgb(6, 49, 99);" href="{% url 'cart:cart_detail' %}"><i class="material-icons" style="font-size: 40px; color: rgb(6, 49, 99);">shopping_cart</i>({{item_count}})</a>
+            </ul>
+        </div>
     </div>
 </header>

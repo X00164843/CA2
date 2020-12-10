@@ -1,31 +1,31 @@
 {% extends "base.html" %}
 {% load static %}
 {% block metadescription %}
-	We have a variety of equipment for GAA.
+	We have a variety of stunning and comfy cushions. Look for the one that suits your needs.
 {% endblock %}
 {% block title %}
-	Search - GAA Store
+	Search - Perfect Cushion Store
 {% endblock %}
 {% block content %}
 	<div>
-		<p class="text-center my_search_text">You have searched for: <b>"{{ query }}"</b></p>
+		<p>You have searched for: <b>"{{ query }}"</b></p>
 	</div>
 	<div class="container">
-		<div class="row mx-auto">
+		<div>
 			{% for product in products %}
-				<div class="my_bottom_margin col-9 col-sm-12 col-md-4 col-md-12 col-lg-4">
-					<div class="card text-center" style="min-width: 18rem;">
-                        <a href="{{product.get_absolute_url}}"><img class="card-img-top my_image"></a>
+				<div>
+					<div class="card" style="min-width: 18rem;">
+                        <a href="{{product.get_absolute_url}}"><img class="card-img-top" 
+                            src="{{product.image.url}}" alt="{{product.name}}"></a>
 						<div class="card-body">
-                            <h4>{{product.name}}</h4>
-							<h4>{{product.price}}</h4>
-							<a href="{{product.get_absolute_url}}">Description</a>
+							<h4>{{product.name}}</h4>
+							<p>€{{product.price}}</p>
 						</div>
 					</div>
 				</div>
 				{% empty %}
-				<div class="row mx-auto">
-					<p class="text-center my_search_text">0 results found.</p>
+				<div>
+					<p>0 results found.</p>
 				</div>
 			{% endfor %}
 		</div>

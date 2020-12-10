@@ -4,19 +4,22 @@
 	{{ product.description|truncatewords:155 }}
 {% endblock %}
 {% block title %}
-	{{ product.name }} - Store
+	{{ product.name }} - Perfect Cushion Store
 {% endblock %}
 {% block content %}
-	<div class="row prod_row_class">
-		<div class="mx-auto">
+	<div class="row">
+		<div>
 			<p><a href="{% url 'shop:allProdCat' %}">Home</a> | <a href="{{ product.category.get_url }}">{{product.category}}</a> | {{product.name}}</p>
 		</div>
 		<div class="container">
 			<br>
 			<div class="row">
-				<div class="col-12 col-sm-12 col-md-12 col-lg-6 text-center">
+				<div>
+					<div style="min-width: 18rem;">
+						<img src="{{product.image.url}}" alt="{{product.name}}">
+					</div>
 				</div>
-				<div class="col-12 col-sm-12 col-md-12 col-lg-6">
+				<div>
 					<div>
 						<h1>{{product.name}}</h1>
 						<p>£{{product.price}}</p>
@@ -25,7 +28,7 @@
 						{% if product.stock == 0%}
 							<p><b>Out of Stock</b></p>
 						{% else %}
-							<a class="btn btn-secondary" href="{% url 'cart:add_cart' product.id %}">Add to Cart</a>
+							<a class="btn" href="{% url 'cart:add_cart' product.id %}">Add to Cart</a>
 						{% endif %}
 					</div>
 				</div>

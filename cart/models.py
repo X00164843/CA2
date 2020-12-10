@@ -8,7 +8,7 @@ class Cart(models.Model):
     class Meta:
         db_table = 'Cart'
         ordering = ['date_added']
-
+    
     def __str__(self):
         return self.cart_id
 
@@ -20,9 +20,9 @@ class CartItem(models.Model):
 
     class Meta:
         db_table = 'CartItem'
-
+    
     def sub_total(self):
         return self.product.price * self.quantity
-
+    
     def __str__(self):
         return self.product
