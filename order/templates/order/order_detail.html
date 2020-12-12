@@ -1,15 +1,15 @@
 {% extends "base.html" %}
 {% load static %}
 {% block title %}
-	Order Details - Perfect Cushion Store
+	Order Details - Ballyboden Online Shop
 {% endblock %}
 {% block content %}
 	<div>
-		<div>
+		<div class="ml-4">
 			<br>
-			<h1>Order Details</h1>
+			<h1 class="ml-5">Order Details</h1>
 			<br>
-<table class="table table-bordered">
+			<table class="table table-bordered">
 				<tr>
 					<td class="text-left" colspan="2">
 						<b>Order: </b>#{{ order.id }}<br>
@@ -40,13 +40,16 @@
 					<td>£{{ item.sub_total }}</td>
 				</tr>
 				{% endfor %}
+				
 				<tr>
 					<tdcolspan="3"><b>Total</b></td>
-					<td>£{{ order.total }}</td>
+					<td>Total</td>
+					<td>€{{ order.total }}</td>
 				</tr>
 				<tr>
 					<tdcolspan="3"><b>Total Paid</b></td>
-					<td>£{{ order.total }}</td>
+					<td>Total Paid</td>
+					<td>€{{ order.total }}</td>
 				</tr>
 				<tr>
 					<tdcolspan="2">
@@ -62,8 +65,16 @@
 						The order #{{ order.id }} has been paid successfully via Stripe.
 					</td>
 				</tr>
-			</table>
-			<button class="btn" onclick="window.print();"><i></i>Print Order</button>
+			</table>			
+			<div class="ml-4">
+				<p style="font-weight: bold; float: left;">Total: </p>
+				<p"> €{{ order.total }}</p>
+			</div>
+			<div class="ml-4">
+				<p style="font-weight: bold; float: left;">Total Paid: </p>
+				<p >€{{ order.total }}</p>
+			</div>
+			<button class="btn btn-outline-dark ml-4" onclick="window.print();"><i class="material-icons align-middle pr-1">print</i>Print</button>
 		</div>
 	</div>
 	<br>

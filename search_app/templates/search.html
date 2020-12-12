@@ -4,25 +4,24 @@
 	We have a variety of stunning and comfy cushions. Look for the one that suits your needs.
 {% endblock %}
 {% block title %}
-	Search - Perfect Cushion Store
+	Search - Ballyboden Online Shop
 {% endblock %}
 {% block content %}
-	<div>
-		<p>You have searched for: <b>"{{ query }}"</b></p>
+	<div style="margin-left: 110px;">
+		<h2 class="my-3">Search results for: <b>"{{ query }}"</b></h2>
 	</div>
 	<div class="container">
-		<div>
+		<div class="row mx-auto">
 			{% for product in products %}
-				<div>
-					<div class="card" style="min-width: 18rem;">
-                        <a href="{{product.get_absolute_url}}"><img class="card-img-top" 
-                            src="{{product.image.url}}" alt="{{product.name}}"></a>
-						<div class="card-body">
-							<h4>{{product.name}}</h4>
-							<p>€{{product.price}}</p>
-						</div>
+			<div class="col-9 col-lg-4 col-sm-12 cold-md-4 pb-3" style="width: 400px;">
+				<div class="card text-center h-100" style="min-width:18rem; max-width: 400px;">
+					<a href="{{product.get_absolute_url}}"><img class="pt-5" style="width: 200px;" src="{{product.image.url}}" alt="{{product.name}}"></a>
+					<div class="card-body">
+						<h4>{{product.name}}</h4>
+						<p>€{{product.price}}</p>
 					</div>
 				</div>
+			</div>
 				{% empty %}
 				<div>
 					<p>0 results found.</p>

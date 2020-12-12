@@ -1,28 +1,29 @@
 {% extends "base.html" %}
 {% load static %}
 {% block metadescription %}
-	This is the shopping cart page. Proceed to review your items and place the order.
+	Shopping cart page.
 {% endblock %}
 {% block title %}
-	Cart - Perfect Cushion Store
+	Cart - Ballyboden Online Shop
 {% endblock %}
 {% block content %}
 	{% if not cart_items %}
-		<div>
+	<br>
+		<div style="margin-bottom: 210px;">
 			<div>
 				<br>
-				<h1>
-					Your shopping cart is empty
-				</h1>
+				<p class="text-center">
+					Your shopping cart is currently empty
+				</p>
 				<br>
-				<p>
-					Please click <a href="{% url 'shop:allProdCat' %}">here</a> to continue shopping.
+				<p class="text-center">
+					Click <a href="{% url 'shop:allProdCat' %}">here</a> to continue shopping.
 				</p>
 			</div>
 		</div>
 	{% else %}
 		<div>
-			<div>
+			<div class="ml-5">
 				<br>
 				<h1>
 					Your shopping cart
@@ -30,8 +31,8 @@
 				<br>
 			</div>
 		</div>
-		<div>
-			<div>
+		<div class="row">
+			<div class="col-8">
 				<table class="table">
 					<thead>
 						<tr>
@@ -39,18 +40,17 @@
 								Your items
 							</th>
 						</tr>
-						
 					</thead>
 					<tbody>
 						{% for cart_item in cart_items %}
 							<tr>
 								<td>
-									<a href="{{cart_item.product.get_url}}"><img src="{{cart_item.product.image.url}}" alt="" class="float-left rounded custom_image"></a>
+									<a href="{{cart_item.product.get_url}}"><img style="width: 100px;" src="{{cart_item.product.image.url}}" alt="" class="float-left rounded custom_image"></a>
 								</td>
 								<td>
 									{{cart_item.product.name}}
 									<br>
-									Unit Price: £{{cart_item.product.price}}
+									Unit Price: €{{cart_item.product.price}}
 									<br>
 									Qty: {{cart_item.quantity}} x £{{cart_item.product.price}}
 								</td>
@@ -59,13 +59,13 @@
 								</td>
 								{% if cart_item.quantity < cart_item.product.stock %}
 									<td>
-										<a href="{% url 'cart:add_cart' cart_item.product.id %}" class="custom_a"><i></i></a>&nbsp;
-										<a href="{% url 'cart:cart_remove' cart_item.product.id %}" class="custom_a"><i></i></a>&nbsp;
-										<a href="{% url 'cart:full_remove' cart_item.product.id %}" class="custom_icon"><i></i></a>
+										<a href="{% url 'cart:add_cart' cart_item.product.id %}"><i class="material-icons" style="color: rgb(29, 136, 52); font-size: 30px;">add_box</i></a>
+										<a href="{% url 'cart:cart_remove' cart_item.product.id %}"><i class="material-icons" style="color: rgb(136, 29, 29); font-size: 30px;">indeterminate_check_box</i></a>
+										<a href="{% url 'cart:full_remove' cart_item.product.id %}">Remove all</a>
 									</td>
 								{% else %}
 									<td>
-										&nbsp;<a href="{% url 'cart:cart_remove' cart_item.product.id %}" class="custom_a"><i></i></a>&nbsp;
+										&nbsp;<a href="{% url 'cart:cart_remove' cart_item.product.id %}" class="custom_a"><i class="material-icons" style="color: rgb(136, 29, 29); font-size: 30px;">indeterminate_check_box</i></a>&nbsp;
 										<a href=""><i></i></a>
 									</td>
 									<td></td>
@@ -76,7 +76,7 @@
 				</table>
 				
 			</div>
-			<div>
+			<div class="col" style="max-width: 400px;">
 				<table class="table">
 					<thead>
 						<tr>
@@ -108,7 +108,7 @@
 								</td>
 							</tr>
 							<tr class="total">
-								<td>Total</td>
+								<td>New Total</td>
 								<td colspan="4"></td>
 								<td class="num">
 									€{{ new_total|floatformat:"2" }}
@@ -125,7 +125,6 @@
 						{% endif %}
 					</tbody>
 				</table>
-				<p>Apply a voucher:</p>
 				<form action="{% url 'vouchers:apply' %}" method="post">
 					{{ voucher_apply_form }}
 					<input type="submit" value="Apply">
@@ -135,6 +134,7 @@
 					</tbody>
 				</table>
 				<div class="mx-auto">
+					<br>
                     <form action="" method="POST">
                         {% csrf_token %}
                             <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
@@ -150,7 +150,6 @@
                                  data-zip-code="true">
                              </script>
                         </form>
-					<a href="{% url 'shop:allProdCat' %}" class="btn btn-secondary btn-block my_custom_button">Continue Shopping</a>
 				</div>
 			</div>
 		</div>

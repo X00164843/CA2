@@ -15,23 +15,11 @@
 	{% endif %}
 {% endblock %}
 {% block content %}
-	<!--Breadcrumb navigation-->
-	{% if category %}
-		<div>
-			<div>
-				<p><a href="{% url 'shop:allProdCat' %}">Our Product Collection</a> | {{category.name}}</p>
-			</div>
-        </div>
-    {% endif %}
 	<div>
 	{% if category %}
-		<img src="{{category.image.url}}" alt="{{category.name}}">
+		<img style="max-width: 100%;" src="{{category.image.url}}" alt="{{category.name}}">
 	</div>
 	<br>
-	<div>
-		<h1>{{category.name}}</h1>
-		<p>{{category.description}}</p>
-    </div>
     {% else %}
 		<img style="max-width: 100%;" src="{% static 'images/home_image.png' %}" alt="Our Products Collection">
 	</div>
