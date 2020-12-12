@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="card my-2 mx-4">
+        <div class="text-center text-primary">Answer this question for a chance at getting a discount code</div>
+        <div class="text-center font-weight-bold">
+            Guess which county has won the most All Ireland Football Finals?
+        </div>
+        <div class="text-center">
+            <input id="guess" type="text">
+            <button type="button" onclick="GetAnswer();">Submit</button>
+            <p class="text-center text-primary" id="answer"></p>
+        </div>
+    </div>
+    <script>
+        function GuessNumber(guess) {
+    if (guess == "Kerry") {
+        return "Answer is correct, Congratulations enter the discount code 'Christmas20' for 20 percent off your purchase";
+    }
+    else if (guess == "kerry") {
+        return "Answer is correct, Congratulations enter the discount code 'Christmas20' for 20 percent off your purchase";
+    }
+    else {
+         return "Answer is incorrect, Try again later";
+    }
+
+}
+
+function GetAnswer() {
+    let answer = GuessNumber(document.getElementById("guess").value);
+    document.getElementById("answer").innerHTML = answer;
+
+}
+    </script>
+    
+</body>
+</html>
+
