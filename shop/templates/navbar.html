@@ -1,6 +1,7 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light justify-content-center">
     <div class="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
       <ul class="navbar-nav justify-content-center">
+        <li class="nav-item"><a class="nav-link" href="{% url 'article_list' %}">Articles</a></li>
         <a class="nav-link" href="{% url 'shop:allProdCat' %}">All Products</a>
         {% for cat in links %}
           <a class="nav-link" href="{{cat.get_absolute_url}}">{{cat.name}}</a>
