@@ -44,8 +44,8 @@ INSTALLED_APPS = [
     'stripe',
     'vouchers',
     'order',
-    'articles',
     'crispy_forms',
+    'articles',
 ]
 
 MIDDLEWARE = [
@@ -130,6 +130,8 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [str(BASE_DIR.joinpath('static'))]
